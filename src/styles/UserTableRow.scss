@@ -1,0 +1,23 @@
+@import "maps";
+@import "mixins";
+@import "UserTable";
+
+.user-table-row {
+  @extend .user-row;
+  background: #fff;
+  border-bottom: 1px solid map-get($colors, dim-warm);
+
+  &__item {
+    @extend .user-row-item;
+    color: map-get($colors, dim-hot);
+    border-left: 1px solid map-get($colors, dim-warm);
+
+    &--mobile {
+      display: none;
+
+      @include not-desktop {
+        display: initial;
+      }
+    }
+  }
+}

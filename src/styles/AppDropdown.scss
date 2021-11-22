@@ -1,0 +1,45 @@
+@import "maps";
+
+.app-dropdown {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 0 16px 0 14px;
+  height: 42px;
+  border: 1px solid map-get($colors, dim-cool);
+  border-radius: 4px;
+  font-size: 12px;
+
+  &__area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__placeholder {
+    color: map-get($colors, dim-hot);
+  }
+
+  &--active &__placeholder {
+    color: #000;
+  }
+
+  &--focused &__caret {
+    transform: rotate(180deg);
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+  }
+
+  &--focused &__list {
+    display: block;
+  }
+}

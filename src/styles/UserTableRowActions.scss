@@ -1,0 +1,23 @@
+@import "maps";
+
+.user-table-row-actions {
+  display: flex;
+  justify-content: space-around;
+
+  &__edit,
+  &__remove {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__edit {
+    color: map-get($colors, primary-cold);
+  }
+
+  &__remove {
+    color: map-get($colors, error);
+  }
+}

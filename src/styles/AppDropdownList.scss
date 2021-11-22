@@ -1,0 +1,25 @@
+@import "maps";
+
+.app-dropdown-list {
+  padding: 0 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid map-get($colors, dim-cool);
+  border-radius: 4px;
+  background: #fff;
+
+  &__item {
+    padding: 14px 0;
+    border-bottom: 1px solid map-get($colors, dim-cool);
+    color: map-get($colors, dim-hot);
+    cursor: pointer;
+
+    &:hover {
+      font-weight: 700;
+      color: #000;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+}

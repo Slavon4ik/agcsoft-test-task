@@ -1,0 +1,20 @@
+@import "maps";
+@import "mixins";
+@import "UserTable";
+
+.user-table-hat {
+  @extend .user-row;
+  background: map-get($colors, secondary);
+  border-radius: 4px 4px 0 0;
+
+  @include not-desktop {
+    display: none;
+  }
+
+  &__item {
+    @extend .user-row-item;
+    border: none;
+    padding-bottom: 7px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}

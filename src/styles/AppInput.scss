@@ -1,0 +1,15 @@
+@import "maps";
+
+.app-input {
+  height: 42px;
+  width: 100%;
+  border: 1px solid map-get($colors, dim-cool);
+  border-radius: 4px;
+  color: #000;
+  padding-left: 14px;
+  font-size: 12px;
+
+  ::placeholder {
+    color: map-get($colors, dim);
+  }
+}

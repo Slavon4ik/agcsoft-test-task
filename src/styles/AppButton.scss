@@ -1,0 +1,17 @@
+@import "maps";
+
+.app-button {
+  height: 42px;
+  font-size: 12px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  background: map-get($colors, primary);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &--disabled {
+    background: map-get($colors, dim);
+    cursor: not-allowed;
+  }
+}

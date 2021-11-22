@@ -1,0 +1,19 @@
+@import "mixins";
+
+.user-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr 1.5fr 3fr;
+
+  @include not-desktop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-row-item {
+  padding: 9px 12px;
+
+  @include not-desktop {
+    display: grid;
+    grid-gap: 5px;
+  }
+}
