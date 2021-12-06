@@ -1,19 +1,17 @@
 @import "mixins";
 
-.user-row {
-  display: grid;
-  grid-template-columns: 1.5fr 2fr 1.5fr 1.5fr 3fr;
+.user-table {
+  margin-top: 35px;
+  position: relative;
 
-  @include not-desktop {
-    grid-template-columns: 1fr;
-  }
-}
-
-.user-row-item {
-  padding: 9px 12px;
-
-  @include not-desktop {
+  &__actions {
     display: grid;
-    grid-gap: 5px;
+    grid-template-columns: auto auto;
+    grid-gap: 25px;
+    align-items: center;
+    position: absolute;
+    top: -12px;
+    right: 0;
+    transform: translateY(-100%);
   }
 }

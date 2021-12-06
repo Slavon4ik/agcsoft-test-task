@@ -1,7 +1,8 @@
 import React from 'react';
 import '../styles/UserTableRow.scss';
-import { USER_FIELD_LIST, USER_PLACEHOLDERS } from './settings.js';
+import { USER_FIELD_LIST } from './settings.js';
 import UserTableRowActions from './UserTableRowActions.jsx';
+import { FIELD_PLACEHOLDERS } from '../hooks/fields/settings.js';
 
 const UserTableRow = ({ user, remove, update }) => {
   return (
@@ -9,7 +10,7 @@ const UserTableRow = ({ user, remove, update }) => {
       {USER_FIELD_LIST.map(field =>
         <div key={field} className="user-table-row__item">
           <span className="user-table-row__item--mobile">
-            {USER_PLACEHOLDERS[field]}:
+            {FIELD_PLACEHOLDERS[field]}:
           </span>
           <span>
             {user[field]}

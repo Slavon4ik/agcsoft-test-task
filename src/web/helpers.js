@@ -1,7 +1,5 @@
-export function getClassModifiers(settings) {
-  return settings.map((setting) => {
-    return setting.modifiers.reduce((classes, modifier) => {
-      return `${classes} ${classes}--${modifier}`;
-    }, setting.className);
-  });
+export function getClassModifiers(setting) {
+  return setting.modifiers.reduce((classes, modifier) => {
+    return `${classes} ${setting.className}--${modifier}`;
+  }, setting.className);
 }

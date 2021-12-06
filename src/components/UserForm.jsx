@@ -3,37 +3,68 @@ import AppCard from './AppCard.jsx';
 import AppInput from './AppInput.jsx';
 import AppButton from './AppButton.jsx';
 import '../styles/UserForm.scss';
-import { USER_FIELD_CONFIGS, USER_FIELD_LIST } from './settings.js';
+import { USER_FIELD_LIST } from './settings.js';
 import AppDropdown from './AppDropdown.jsx';
-import { USER_FIELDS } from './types.js';
+import { FIELD_TYPES } from '../hooks/fields/types.js';
+import { useForm } from '../hooks/form';
+import { useFields } from '../hooks/fields';
 
 const COMPONENTS = {
-  [USER_FIELDS.FIRST_NAME]: AppInput,
-  [USER_FIELDS.LAST_NAME]: AppInput,
-  [USER_FIELDS.AGE]: AppInput,
-  [USER_FIELDS.CITY]: AppDropdown,
+  [FIELD_TYPES.INPUT]: AppInput,
+  [FIELD_TYPES.DROPDOWN]: AppDropdown,
 }
 
-const UserForm = ({ user, update, submit }) => {
+const UserForm = ({ submit }) => {
+  const fields = useFields(USER_FIELD_LIST);
+  const {
+    model,
+    updateModel,
+    config,
+    violations,
+    invalidate,
+    validate,
+    validateAll,
+    resetModel,
+    resetViolations,
+    getIsFormValid
+  } = useForm(fields);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   useEffect(() => {
-    setButtonDisabled(USER_FIELD_LIST.some(field => !user[field]));
-  }, [user]);
+    setButtonDisabled(Object.values(model).some(value => !value));
+  }, [model]);
+
+  const submitUser = () => {
+    validateAll();
+
+    if (!getIsFormValid()) {
+      return;
+    }
+
+    submit({ id: new Date().getTime(), ...model });
+    resetModel();
+    resetViolations();
+  };
 
   return (
     <AppCard>
       <div className="user-form">
-        {USER_FIELD_LIST.map(field =>
-          React.createElement(COMPONENTS[field], {
-            ...USER_FIELD_CONFIGS[field],
-            key: field,
-            value: user[field],
-            input: value => update({ ...user, [field]: value })
+        {config.map(({ name, type, ...rest }) =>
+          React.createElement(COMPONENTS[type], {
+            ...rest,
+            key: name,
+            value: model[name],
+            error: violations[name].length,
+            input: value => updateModel(name, value),
+            focus: () => invalidate(name),
+            blur: () => validate(name),
           })
         )}
         <div className="user-form__action">
-          <AppButton disabled={buttonDisabled} onClick={() => submit()}>
+          <AppButton
+            disabled={buttonDisabled}
+            onClick={() => submitUser()}
+          >
             <b>ADD</b>
           </AppButton>
         </div>

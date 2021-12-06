@@ -18,7 +18,7 @@ const AppDropdown = ({ value, input, options = [], placeholder = '' }) => {
   const modifiers = [];
   focused && modifiers.push('focused');
   active && modifiers.push('active');
-  const [classes] = getClassModifiers([{ className: 'app-dropdown', modifiers }]);
+  const classes = getClassModifiers({ className: 'app-dropdown', modifiers });
 
   const select = (option) => {
     input(option);

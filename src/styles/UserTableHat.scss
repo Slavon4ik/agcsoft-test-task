@@ -1,9 +1,9 @@
 @import "maps";
 @import "mixins";
-@import "UserTable";
 
 .user-table-hat {
-  @extend .user-row;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr 1.5fr 3fr;
   background: map-get($colors, secondary);
   border-radius: 4px 4px 0 0;
 
@@ -12,9 +12,13 @@
   }
 
   &__item {
-    @extend .user-row-item;
+    padding: 9px 12px 7px;
     border: none;
-    padding-bottom: 7px;
     color: rgba(255, 255, 255, 0.5);
+
+    @include not-desktop {
+      display: grid;
+      grid-gap: 5px;
+    }
   }
 }

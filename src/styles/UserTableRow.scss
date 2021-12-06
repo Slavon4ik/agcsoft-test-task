@@ -1,16 +1,25 @@
 @import "maps";
 @import "mixins";
-@import "UserTable";
 
 .user-table-row {
-  @extend .user-row;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr 1.5fr 3fr;
   background: #fff;
   border-bottom: 1px solid map-get($colors, dim-warm);
 
+  @include not-desktop {
+    grid-template-columns: 1fr;
+  }
+
   &__item {
-    @extend .user-row-item;
+    padding: 9px 12px;
     color: map-get($colors, dim-hot);
     border-left: 1px solid map-get($colors, dim-warm);
+
+    @include not-desktop {
+      display: grid;
+      grid-gap: 5px;
+    }
 
     &--mobile {
       display: none;
